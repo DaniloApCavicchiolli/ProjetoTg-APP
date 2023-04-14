@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import AppLoading from "expo-app-loading";
+
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_700Bold,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+} from "@expo-google-fonts/poppins";
+import {
+  Kanit_400Regular,
+  Kanit_500Medium,
+  Kanit_600SemiBold,
+  Kanit_700Bold,
+} from "@expo-google-fonts/kanit"
+
+import Login from './src/screens/Login';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_700Bold,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Kanit_400Regular,
+    Kanit_500Medium,
+    Kanit_600SemiBold,
+    Kanit_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    <AppLoading />
+  } else {
+    return (
+      <Login />
+    );
+  }
+}
