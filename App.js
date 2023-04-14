@@ -15,6 +15,7 @@ import {
 } from "@expo-google-fonts/kanit"
 
 import Login from './src/screens/Login';
+import Cadastro from "./src/screens/Cadastro";
 
 export default function App() {
 
@@ -33,7 +34,7 @@ export default function App() {
     <AppLoading />
   } else {
     return (
-      <Login />
+      <Cadastro />
     );
   }
 }
