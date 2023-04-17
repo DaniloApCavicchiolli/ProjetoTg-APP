@@ -83,7 +83,7 @@ export default function Cadastro({ navigation }) {
   return (
     <>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => {}} style={styles.backButton}>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")} style={styles.backButton}>
           <AntDesign name="arrowleft" size={24} color="black" style={{ marginLeft: 20 }} />
         </TouchableOpacity>
         <Text style={styles.textHeader}> Cadastro </Text>

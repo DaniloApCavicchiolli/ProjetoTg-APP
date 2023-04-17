@@ -2,6 +2,7 @@ import React from "react";
 import { View, ActivityIndicator, Platform } from "react-native";
 
 import AuthRoutes from "./auth.routes";
+import AppRoutes from "./app.routes";
 
 import { useAuth } from "../hooks/useAuth";
 import { theme } from "../global/themes";
@@ -19,5 +20,5 @@ export function Routes() {
       </View>
     );
     
-  return <AuthRoutes />;
+  return user ? <AppRoutes/> : <AuthRoutes />;
 }
