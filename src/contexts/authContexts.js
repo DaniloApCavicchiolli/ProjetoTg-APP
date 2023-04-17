@@ -39,8 +39,11 @@ export function AuthProvider({ children }) {
 
   /* Função para logar */
   const signIn = useCallback(async ({ email, password }) => {
+    console.log('email', email);
+    console.log('password', password);
     const response = await api.post("/auth", { email, password });
     api.defaults.headers.authorization = `Bearer ${response.data.token}`;
+    console.log('response', response);
     setUser(response.data.user);
     setUserToken(response.data.token);
 
