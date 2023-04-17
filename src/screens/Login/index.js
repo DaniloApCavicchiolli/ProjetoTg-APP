@@ -88,7 +88,7 @@ export default function Login({ navigation }) {
               Entrar
             </Button>
             <Button
-              onPress={() => { }}
+              onPress={() => navigation.navigate("Cadastro")}
               mode="outlined"
               color={theme.colors.button}
               style={styles.buttonCadastro}

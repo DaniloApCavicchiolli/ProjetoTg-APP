@@ -1,4 +1,7 @@
 import AppLoading from "expo-app-loading";
+import { NavigationContainer } from "@react-navigation/native";
+import { AuthProvider } from "./src/contexts/authContexts";
+import Toast from "react-native-toast-message";
 
 import {
   useFonts,
@@ -16,6 +19,7 @@ import {
 
 import Login from './src/screens/Login';
 import Cadastro from "./src/screens/Cadastro";
+import { Routes } from "./src/routes/index";
 
 export default function App() {
 
@@ -34,7 +38,12 @@ export default function App() {
     <AppLoading />
   } else {
     return (
-      <Cadastro />
+      <AuthProvider>
+        <NavigationContainer>
+          <Routes />
+          <Toast ref={(ref) => Toast.setRef(ref)} />
+        </NavigationContainer>
+      </AuthProvider>
     );
   }
 }

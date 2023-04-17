@@ -4,6 +4,10 @@ import { TextInput, Button } from "react-native-paper";
 import { TextInputMask } from "react-native-masked-text";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { AntDesign } from "@expo/vector-icons";
+import Toast from "react-native-toast-message";
+import * as Yup from "yup";
+
+import { api } from "../../services/api";
 
 import seuLogo from "../../../assets/seuLogo.png";
 import { theme } from "../../global/themes";
@@ -14,20 +18,65 @@ export default function Cadastro({ navigation }) {
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [password, setPassword] = useState("");
-  const [cidade, setcidade] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [cultura, setCultura] = useState("");
 
   const [showPassword, setShowPassword] = useState(true);
+  const [validationErrors, setValidationErrors] = useState({});
 
   async function handleSaveRegister() {
     try {
-      console.log('name', name);
-      console.log('email', email);
-      console.log('telefone', telefone);
-      console.log('password', password);
-    } catch (err) {
+      setValidationErrors({});
 
+      const schema = Yup.object().shape({
+        name: Yup.string()
+          .required("Nome obrigatório!")
+          .min(3, "O nome precisa ter no mínimo 3 caracteres")
+          .max(30, "O nome precisa ter no máximo 30 caracteres"),
+        email: Yup.string()
+          .required("Email obrigatório!")
+          .email("O email precisa ser válido!"),
+        password: Yup.string()
+          .required("Senha obrigatória!")
+          .min(8, "A senha precisa ter no mínimo 6 caracteres")
+          .max(20, "A senha precisa ter no máximo 20 caracteres"),
+      });
+
+      let data = { name, email, password, telefone };
+      await schema.validate(data, { abortEarly: false });
+
+      let response = await api.post("/users", data);
+
+      if(response.data.status === 200){
+        Toast.show({
+          type: "success",
+          text1: "Sucesso",
+          text2: "Cadastro realizado com sucesso!",
+        });
+      }
+
+      navigation.navigate("Login");
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          setValidationErrors((state) => {
+            return {
+              ...state,
+              [error.path || ""]: error.message,
+            };
+          });
+        });
+
+        return Toast.show({
+          type: "error",
+          text1: "Erro",
+          text2: err.inner[0].message,
+        });
+      }
+      console.log(err)
+      Toast.show({
+        type: "error",
+        text1: "Erro",
+        text2: "Não foi possível realizar o cadastro, tente novamente.",
+      });
     }
   }
 
@@ -53,7 +102,8 @@ export default function Cadastro({ navigation }) {
               autoCapitalize="words"
               autoCompleteType="name"
               placeholder="Usuário"
-              // error={!!validationErrors["name"]}
+              placeholderTextColor={theme.colors.placeHolder}
+              error={!!validationErrors["name"]}
               onChangeText={(text) => setName(text)}
               style={styles.inputUsuario}
             ></TextInput>
@@ -68,7 +118,8 @@ export default function Cadastro({ navigation }) {
               autoCapitalize="none"
               autoCompleteType="email"
               placeholder="usuário@teste.com"
-              // error={!!validationErrors["email"]}
+              placeholderTextColor={theme.colors.placeHolder}
+              error={!!validationErrors["email"]}
               onChangeText={(text) => setEmail(text)}
               style={styles.inputEmail}
             ></TextInput>
@@ -82,6 +133,7 @@ export default function Cadastro({ navigation }) {
               keyboardType="phone-pad"
               autoCompleteType="tel"
               placeholder="(99) 99999-9999"
+              placeholderTextColor={theme.colors.placeHolder}
               onChangeText={(text) => setTelefone(text)}
               style={styles.inputTelefone}
               render={(props) => (
@@ -98,11 +150,12 @@ export default function Cadastro({ navigation }) {
               mode="flat"
               name="senha"
               value={password}
-              // error={!!validationErrors["senha"]}
+              error={!!validationErrors["senha"]}
               textContentType="password"
               secureTextEntry={showPassword}
               placeholder="Insira sua senha"
-              onChangeText={(text) => setSenha(text)}
+              placeholderTextColor={theme.colors.placeHolder}
+              onChangeText={(text) => setPassword(text)}
               style={styles.inputSenha}
               right={
                 <TextInput.Icon
@@ -118,7 +171,6 @@ export default function Cadastro({ navigation }) {
               <Button
                 onPress={handleSaveRegister}
                 mode="contained"
-                // disabled={isChecked === true ? false : true}
                 style={styles.buttonCriarConta}
                 labelStyle={{
                   fontFamily: theme.fonts.title700Kanit,
