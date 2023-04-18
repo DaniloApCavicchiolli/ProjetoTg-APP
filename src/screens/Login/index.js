@@ -116,8 +116,8 @@ export default function Login({ navigation }) {
           ></TextInput>
           <View style={styles.switchContainer}>
             <Switch
-              trackColor={{ false: "#A7AFB7", true: "#FAD18A" }} // #F8AA27 #81b0ff
-              thumbColor={isEnabled ? "#F8AA27" : "#f4f3f4"} // #00f #f4f3f4
+              trackColor={{ false: "#A7AFB7", true: "#bbc7c1" }} 
+              thumbColor={isEnabled ? "#7a9186" : "#f4f3f4"} 
               ios_backgroundColor="#A7AFB7"
               onValueChange={toggleSwitch}
               value={isEnabled}
@@ -131,8 +131,9 @@ export default function Login({ navigation }) {
               mode="contained"
               style={styles.buttonEntrar}
               labelStyle={{
-                fontFamily: theme.fonts.title700Kanit,
+                fontFamily: theme.fonts.Poppins600,
                 color: theme.colors.buttonTitle,
+                fontSize: 18
               }}
             >
               Entrar
@@ -140,11 +141,11 @@ export default function Login({ navigation }) {
             <Button
               onPress={() => navigation.navigate("Cadastro")}
               mode="outlined"
-              color={theme.colors.button}
               style={styles.buttonCadastro}
               labelStyle={{
-                fontFamily: theme.fonts.title700Kanit,
+                fontFamily: theme.fonts.Poppins600,
                 color: theme.colors.secundary,
+                fontSize: 18
               }}
             >
               Cadastrar-se

@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         // backgroundColor: 'yellow'
     },
     textHeader: {
-        fontFamily: theme.fonts.title600Kanit,
+        fontFamily: theme.fonts.Poppins700,
         fontSize: 20
     },
     inputContainer: {
@@ -36,56 +36,56 @@ export const styles = StyleSheet.create({
         paddingLeft: 25,
         fontSize: 15,
         paddingTop: 50,
-        color: theme.colors.title,
-        fontFamily: theme.fonts.title700Kanit,
+        color: theme.colors.textLabel,
+        fontFamily: theme.fonts.Poppins500,
     },
     inputUsuario: {
         width: 300,
         height: 34,
         backgroundColor: "transparent",
-        fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
     },
     textEmail: {
         width: '100%',
         paddingLeft: 25,
         fontSize: 15,
         paddingTop: 30,
-        color: theme.colors.title,
-        fontFamily: theme.fonts.title700Kanit,
+        color: theme.colors.textLabel,
+        fontFamily: theme.fonts.Poppins500,
     },
     inputEmail: {
         width: 300,
         height: 34,
         backgroundColor: "transparent",
-        fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
     },
     textTelefone: {
         width: '100%',
         paddingLeft: 25,
         fontSize: 15,
         paddingTop: 30,
-        color: theme.colors.title,
-        fontFamily: theme.fonts.title700Kanit,
+        color: theme.colors.textLabel,
+        fontFamily: theme.fonts.Poppins500,
     },
     inputTelefone: {
         width: 300,
         height: 34,
         backgroundColor: "transparent",
-        fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
     },
     textSenha: {
         width: '100%',
         paddingLeft: 25,
         fontSize: 15,
         paddingTop: 30,
-        color: theme.colors.title,
-        fontFamily: theme.fonts.title700Kanit,
+        color: theme.colors.textLabel,
+        fontFamily: theme.fonts.Poppins500,
     },
     inputSenha: {
         width: 300,
         height: 34,
         backgroundColor: "transparent",
-        fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
     },
     section: {
         flexDirection: 'row',
@@ -107,7 +107,9 @@ export const styles = StyleSheet.create({
     buttonCriarConta: {
         width: 324,
         height: 44,
-        backgroundColor: theme.colors.button,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: theme.colors.primary,
         borderRadius: 8
     },
 })

@@ -45,7 +45,7 @@ export default function Cadastro({ navigation }) {
 
       let response = await api.post("/users", data);
 
-      if(response.data.status === 200){
+      if (response.data.status === 200) {
         Toast.show({
           type: "success",
           text1: "Sucesso",
@@ -173,8 +173,9 @@ export default function Cadastro({ navigation }) {
                 mode="contained"
                 style={styles.buttonCriarConta}
                 labelStyle={{
-                  fontFamily: theme.fonts.title700Kanit,
+                  fontFamily: theme.fonts.title600Poppins,
                   color: theme.colors.buttonTitle,
+                  fontSize: 18
                 }}
               >
                 Criar uma conta

@@ -25,8 +25,8 @@ export const styles = StyleSheet.create({
         paddingLeft: 42,
         fontSize: 15,
         paddingTop: 40,
-        color: theme.colors.title,
-        fontFamily: theme.fonts.title700Kanit,
+        color: theme.colors.textLabel,
+        fontFamily: theme.fonts.Poppins500,
     },
     inputEmail: {
         width: 300,
@@ -40,8 +40,8 @@ export const styles = StyleSheet.create({
         paddingLeft: 42,
         paddingTop: 30,
         fontSize: 15,
-        color: theme.colors.title,
-        fontFamily: theme.fonts.title700Kanit,
+        color: theme.colors.textLabel,
+        fontFamily: theme.fonts.Poppins500,
     },
     inputSenha: {
         width: 300,
@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
         paddingLeft: 12,
         fontSize: 15,
         color: theme.colors.veryDark,
-        fontFamily: theme.fonts.title500Kanit
+        fontFamily: theme.fonts.Poppins500
     },
 
     buttonContainer: {
@@ -78,8 +78,10 @@ export const styles = StyleSheet.create({
     buttonEntrar: {
         width: 324,
         height: 44,
+        alignItems: 'center',
+        justifyContent: 'center',
         borderRadius: 8,
-        backgroundColor: theme.colors.button,
+        backgroundColor: theme.colors.primary,
     },
     buttonCadastro: {
         width: 324,
