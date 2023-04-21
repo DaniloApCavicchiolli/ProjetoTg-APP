@@ -7,6 +7,7 @@ import { styles } from "./styles";
 import { theme } from "../../global/themes";
 import { useAuth } from "../../hooks/useAuth";
 import logoImage from "../../../assets/seuLogo.png";
+import HeaderCategory from "../../components/HeaderCategory";
 
 export default function Perfil({ navigation }) {
 
@@ -16,8 +17,7 @@ export default function Perfil({ navigation }) {
     const [email, setEmail] = useState(user?.email);
     const [telefone, setTelefone] = useState(user?.telefone);
     const [cidade, setCidade] = useState(user?.cidade);
-    const [endereco, setEndereco] = useState(user?.senha);
-    const [showPassword, setShowPassword] = useState(true);
+    const [endereco, setEndereco] = useState(user?.endereco);
 
     async function handleUpdateUser() {
         try {
@@ -34,7 +34,8 @@ export default function Perfil({ navigation }) {
             </View>
 
             <View style={styles.container}>
-                <ScrollView style={{ flex: 1 }}>
+                <HeaderCategory />
+                <ScrollView style={{ flex: 1, width: '95%' }}>
                     <View style={styles.dadosContainer}>
                         <Text style={styles.textNome}>Nome</Text>
                         <TextInput
@@ -80,6 +81,7 @@ export default function Perfil({ navigation }) {
                             options={{ maskType: "BRL", withDDD: true, dddMask: "(99) " }}
                         ></TextInputMask>
 
+                        <Text style={styles.textTelefone}>Cidade</Text>
                         <TextInput
                             placeholder={"Cidade"}
                             placeholderTextColor={theme.colors.placeHolder}
@@ -91,6 +93,7 @@ export default function Perfil({ navigation }) {
                             style={styles.inputNome}
                         ></TextInput>
 
+                        <Text style={styles.textTelefone}>Endereço</Text>
                         <TextInput
                             placeholder={"Endereço"}
                             placeholderTextColor={theme.colors.placeHolder}
@@ -108,8 +111,9 @@ export default function Perfil({ navigation }) {
                                 mode="contained"
                                 style={styles.buttonSalvar}
                                 labelStyle={{
-                                    fontFamily: theme.fonts.title700Kanit,
+                                    fontFamily: theme.fonts.Poppins600,
                                     color: theme.colors.buttonTitle,
+                                    fontSize: 18
                                 }}
                             >
                                 Salvar
@@ -121,8 +125,9 @@ export default function Perfil({ navigation }) {
                                 color={theme.colors.button}
                                 style={styles.buttonLogout}
                                 labelStyle={{
-                                    fontFamily: theme.fonts.title700Kanit,
-                                    color: theme.colors.button,
+                                    fontFamily: theme.fonts.Poppins600,
+                                    color: theme.colors.secundary,
+                                    fontSize: 18
                                 }}
                             >
                                 Logout

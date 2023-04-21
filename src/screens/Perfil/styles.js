@@ -4,27 +4,26 @@ import { theme } from '../../global/themes'
 export const styles = StyleSheet.create({
     header: {
         width: '100%',
-        height: 114,
+        height: 100,
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme.colors.button
+        backgroundColor: theme.colors.primary
     },
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: theme.colors.background,
-        // backgroundColor: 'red'
     },
     categoryContainer: {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        marginTop: 25,
-        marginBottom: 22,
+        marginTop: 10,
+        marginBottom: 12,
     },
     viewText: {
         textAlign: 'center',
@@ -58,6 +57,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8
     },
     dadosContainer: {
+        width: '100%',
         alignItems: 'center',
         borderRadius: 20,
         backgroundColor: theme.colors.buttonTitle
@@ -66,7 +66,8 @@ export const styles = StyleSheet.create({
         width: '90%',
         fontSize: 15,
         marginTop: 36,
-        fontFamily: theme.fonts.title500Kanit,
+        fontFamily: theme.fonts.Poppins500,
+        color: theme.colors.textLabel,
     },
     inputNome: {
         width: '90%',
@@ -74,7 +75,7 @@ export const styles = StyleSheet.create({
         paddingLeft: 15,
         marginTop: 21,
         borderRadius: 8,
-        fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
         borderWidth: 1,
         borderColor: "#EAEBEC"
     },
@@ -82,7 +83,8 @@ export const styles = StyleSheet.create({
         width: '90%',
         fontSize: 15,
         marginTop: 36,
-        fontFamily: theme.fonts.title500Kanit,
+        fontFamily: theme.fonts.Poppins500,
+        color: theme.colors.textLabel,
     },
     inputEmail: {
         width: '90%',
@@ -90,7 +92,7 @@ export const styles = StyleSheet.create({
         paddingLeft: 15,
         marginTop: 21,
         borderRadius: 8,
-        fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
         borderWidth: 1,
         borderColor: "#EAEBEC"
     },
@@ -98,7 +100,8 @@ export const styles = StyleSheet.create({
         width: '90%',
         fontSize: 15,
         marginTop: 36,
-        fontFamily: theme.fonts.title500Kanit,
+        fontFamily: theme.fonts.Poppins500,
+        color: theme.colors.textLabel,
     },
     inputTelefone: {
         width: '90%',
@@ -106,7 +109,7 @@ export const styles = StyleSheet.create({
         paddingLeft: 15,
         marginTop: 21,
         borderRadius: 8,
-        // fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
         borderWidth: 1,
         borderColor: "#EAEBEC"
     },
@@ -114,7 +117,8 @@ export const styles = StyleSheet.create({
         width: '90%',
         fontSize: 15,
         marginTop: 36,
-        fontFamily: theme.fonts.title500Kanit,
+        fontFamily: theme.fonts.Poppins500,
+        color: theme.colors.textLabel,
     },
     inputCidade: {
         width: '90%',
@@ -124,17 +128,18 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         borderRadius: 8,
-        fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
         borderWidth: 1,
         borderColor: "#EAEBEC"
     },
-    textRegiao: {
+    textEndereco: {
         width: '90%',
         fontSize: 15,
         marginTop: 36,
-        fontFamily: theme.fonts.title500Kanit,
+        fontFamily: theme.fonts.Poppins500,
+        color: theme.colors.textLabel,
     },
-    inputRegiao: {
+    inputEndereco: {
         width: '90%',
         height: 50,
         paddingLeft: 15,
@@ -142,71 +147,11 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         borderRadius: 8,
-        fontFamily: theme.fonts.title400Poppins,
+        fontFamily: theme.fonts.Poppins400,
         borderWidth: 1,
         borderColor: "#EAEBEC"
     },
-    textSenha: {
-        width: '90%',
-        fontSize: 15,
-        marginTop: 36,
-        fontFamily: theme.fonts.title500Kanit,
-    },
-    viewSenha: {
-        width: '90%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 21,
-        paddingRight: 32,
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: "#EAEBEC"
-        // backgroundColor: 'red'
-    },
-    inputSenha: {
-        width: '100%',
-        height: 50,
-        paddingLeft: 15,
-        borderRadius: 8,
-        fontFamily: theme.fonts.title400Poppins,
-    },
-    textCultura: {
-        width: '90%',
-        fontSize: 15,
-        marginTop: 36,
-        fontFamily: theme.fonts.title500Kanit,
-    },
-    inputCultura: {
-        width: '90%',
-        height: 50,
-        paddingLeft: 15,
-        marginTop: 21,
-        marginBottom: 4,
-        borderRadius: 8,
-        fontFamily: theme.fonts.title400Poppins,
-        borderWidth: 1,
-        borderColor: "#EAEBEC"
-    },
-    textPlano: {
-        width: '90%',
-        fontSize: 15,
-        marginTop: 36,
-        fontFamily: theme.fonts.title500Kanit,
-        // backgroundColor: 'yellow'
-    },
-    inputPlano: {
-        width: '90%',
-        height: 50,
-        paddingLeft: 15,
-        marginTop: 21,
-        marginBottom: 4,
-        borderRadius: 8,
-        fontFamily: theme.fonts.title400Poppins,
-        borderWidth: 1,
-        borderColor: "#EAEBEC",
-        backgroundColor: "#FFFFFF"
-    },
+    
     buttonContainer: {
         alignItems: 'center',
         marginBottom: 15,
@@ -215,36 +160,14 @@ export const styles = StyleSheet.create({
     buttonSalvar: {
         width: 324,
         height: 44,
-        backgroundColor: theme.colors.secundary,
+        backgroundColor: theme.colors.primary,
         borderRadius: 8
     },
     buttonLogout: {
         width: 324,
         height: 44,
         marginTop: 28,
-        // marginBottom: 15,
         borderColor: theme.colors.button,
         borderRadius: 8,
     },
-    containerDropDown: {
-        display: 'flex',
-        alignItems: 'center',
-        width: '90%',
-        // height: 50,
-        // paddingLeft: 15,
-        marginTop: 21,
-        marginBottom: 4,
-        // zIndex: 1000,
-        // backgroundColor: 'yellow'
-    },
-    dropPiker: {
-        flex: 1,
-        width: '90%',
-        // height: 40,
-        // marginLeft: 2,
-        // marginTop: 6,
-        borderColor: "#EAEBEC",
-        // backgroundColor: 'yellow'
-    },
-
 })

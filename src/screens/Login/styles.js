@@ -78,10 +78,8 @@ export const styles = StyleSheet.create({
     buttonEntrar: {
         width: 324,
         height: 44,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 8,
         backgroundColor: theme.colors.primary,
+        borderRadius: 8
     },
     buttonCadastro: {
         width: 324,
