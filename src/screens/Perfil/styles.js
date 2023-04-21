@@ -159,13 +159,13 @@ export const styles = StyleSheet.create({
     },
     buttonSalvar: {
         width: 324,
-        height: 44,
+        // height: 44,
         backgroundColor: theme.colors.primary,
         borderRadius: 8
     },
     buttonLogout: {
         width: 324,
-        height: 44,
+        // height: 44,
         marginTop: 28,
         borderColor: theme.colors.button,
         borderRadius: 8,

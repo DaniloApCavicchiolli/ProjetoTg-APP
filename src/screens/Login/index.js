@@ -93,7 +93,7 @@ export default function Login({ navigation }) {
             error={!!validationErrors["email"]}
             onChangeText={(text) => setEmail(text)}
             style={styles.inputEmail}
-          ></TextInput>
+          />
 
           <Text style={styles.textSenha}>Senha</Text>
           <TextInput
@@ -101,19 +101,18 @@ export default function Login({ navigation }) {
             name="senha"
             value={password}
             secureTextEntry={showPassword}
-            textContentType="password"
             error={!!validationErrors["password"]}
             onChangeText={(text) => setPassword(text)}
             style={styles.inputSenha}
             right={
               <TextInput.Icon
                 onPress={() => setShowPassword(!showPassword)}
-                name={!showPassword ? "eye" : "eye-off"}
+                icon={!showPassword ? "eye" : "eye-off"}
                 size={24}
-                color={theme.colors.placeHolder}
+                color={theme.colors.subtitle}
               />
             }
-          ></TextInput>
+          />
           <View style={styles.switchContainer}>
             <Switch
               trackColor={{ false: "#A7AFB7", true: "#bbc7c1" }} 

@@ -77,15 +77,14 @@ export const styles = StyleSheet.create({
     },
     buttonEntrar: {
         width: 324,
-        height: 44,
+        // height: 44,
         backgroundColor: theme.colors.primary,
         borderRadius: 8
     },
     buttonCadastro: {
         width: 324,
-        height: 44,
+        // height: 44,
         marginTop: 15,
-        // marginBottom: 15,
         borderColor: theme.colors.secundary,
         borderRadius: 8,
     },
