@@ -6,7 +6,7 @@ export const theme = {
         subtitle: "#27282A",
         textLabel: "#af92cb",
         placeHolder: "#a1a9b2",
-        button: "#20655F",
+        error: "#ff0000",
         buttonTitle: "#FFFFFF",
         background: "#F2F2F2",
         lightGrayishGreen: "#EDEEEC",

@@ -3,6 +3,7 @@ import { View, Text, TextInput, SafeAreaView, Image, ScrollView } from "react-na
 import { Button } from "react-native-paper";
 import { TextInputMask } from "react-native-masked-text";
 import * as Yup from "yup";
+import Toast from "react-native-toast-message";
 
 import { styles } from "./styles";
 import { theme } from "../../global/themes";
@@ -34,12 +35,11 @@ export default function Perfil({ navigation }) {
                     .required("Email obrigatório!")
                     .email("O email precisa ser válido!"),
                 cidade: Yup.string()
-                    .min(3, "O nome da cidade precisa ter no mínimo 3 caracteres")
-                    .max(30, "O nome da cidade precisa ter no máximo 30 caracteres"),
+                    .min(3, "A cidade precisa ter no mínimo 3 caracteres")
+                    .max(30, "A cidade precisa ter no máximo 30 caracteres"),
                 endereco: Yup.string()
-                    .required("Região obrigatório!")
-                    .min(3, "O nome da região precisa ter no mínimo 3 caracteres")
-                    .max(30, "O nome da região precisa ter no máximo 30 caracteres"),
+                    .min(3, "O enderço precisa ter no mínimo 3 caracteres")
+                    .max(30, "O endereço precisa ter no máximo 30 caracteres"),
             });
 
             let data = { name, email, telefone, cidade, endereco };
@@ -72,12 +72,11 @@ export default function Perfil({ navigation }) {
             <View style={styles.header}>
                 <Image source={logoImage} style={{ width: 175, height: 76 }} />
             </View>
-
             <View style={styles.container}>
                 <HeaderCategory />
-                <ScrollView style={{ flex: 1, width: '95%' }}>
+                <ScrollView  style={{ flex: 1, width: '95%' }}>
                     <View style={styles.dadosContainer}>
-                        <Text style={styles.textNome}>Nome</Text>
+                        <Text style={styles.textLabel}>Nome</Text>
                         <TextInput
                             placeholder={"Novo Usuário"}
                             placeholderTextColor={theme.colors.placeHolder}
@@ -88,10 +87,10 @@ export default function Perfil({ navigation }) {
                             autoCompleteType="name"
                             error={!!validationErrors["name"]}
                             onChangeText={(text) => setName(text)}
-                            style={styles.inputNome}
-                        ></TextInput>
+                            style={[!!validationErrors["name"] ? styles.inputError : styles.input]}
+                        />
 
-                        <Text style={styles.textEmail}>E-mail</Text>
+                        <Text style={styles.textLabel}>E-mail</Text>
                         <TextInput
                             placeholder={"usuário@teste.com"}
                             placeholderTextColor={theme.colors.placeHolder}
@@ -103,10 +102,10 @@ export default function Perfil({ navigation }) {
                             autoCompleteType="email"
                             error={!!validationErrors["email"]}
                             onChangeText={(text) => setEmail(text)}
-                            style={styles.inputEmail}
-                        ></TextInput>
+                            style={[!!validationErrors["email"] ? styles.inputError : styles.input]}
+                        />
 
-                        <Text style={styles.textTelefone}>Telefone</Text>
+                        <Text style={styles.textLabel}>Telefone</Text>
                         <TextInputMask
                             mode="flat"
                             name="telefone"
@@ -116,12 +115,12 @@ export default function Perfil({ navigation }) {
                             autoCompleteType="tel"
                             placeholder="(99) 99999-9999"
                             onChangeText={(text) => setTelefone(text)}
-                            style={styles.inputTelefone}
+                            style={[!!validationErrors["telefone"] ? styles.inputError : styles.input]}
                             type="cel-phone"
                             options={{ maskType: "BRL", withDDD: true, dddMask: "(99) " }}
-                        ></TextInputMask>
+                        />
 
-                        <Text style={styles.textTelefone}>Cidade</Text>
+                        <Text style={styles.textLabel}>Cidade</Text>
                         <TextInput
                             placeholder={"Cidade"}
                             placeholderTextColor={theme.colors.placeHolder}
@@ -130,10 +129,10 @@ export default function Perfil({ navigation }) {
                             autoCapitalize="words"
                             error={!!validationErrors["cidade"]}
                             onChangeText={(text) => setCidade(text)}
-                            style={styles.inputNome}
+                            style={[!!validationErrors["cidade"] ? styles.inputError : styles.input]}
                         />
 
-                        <Text style={styles.textTelefone}>Endereço</Text>
+                        <Text style={styles.textLabel}>Endereço</Text>
                         <TextInput
                             placeholder={"Endereço"}
                             placeholderTextColor={theme.colors.placeHolder}
@@ -142,7 +141,7 @@ export default function Perfil({ navigation }) {
                             autoCapitalize="words"
                             error={!!validationErrors["endereco"]}
                             onChangeText={(text) => setEndereco(text)}
-                            style={styles.inputNome}
+                            style={[!!validationErrors["endereco"] ? styles.inputError : styles.input]}
                         />
 
                         <View style={styles.buttonContainer}>
