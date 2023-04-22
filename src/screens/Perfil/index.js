@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, SafeAreaView, Image, ScrollView } from "react-native";
 import { Button } from "react-native-paper";
 import { TextInputMask } from "react-native-masked-text";
+import * as Yup from "yup";
 
 import { styles } from "./styles";
 import { theme } from "../../global/themes";
@@ -11,7 +12,7 @@ import HeaderCategory from "../../components/HeaderCategory";
 
 export default function Perfil({ navigation }) {
 
-    const { user, signOut } = useAuth();
+    const { user, signOut, updateUser } = useAuth();
 
     const [name, setName] = useState(user?.name);
     const [email, setEmail] = useState(user?.email);
@@ -19,11 +20,50 @@ export default function Perfil({ navigation }) {
     const [cidade, setCidade] = useState(user?.cidade);
     const [endereco, setEndereco] = useState(user?.endereco);
 
+    const [validationErrors, setValidationErrors] = useState({});
+
     async function handleUpdateUser() {
         try {
+            setValidationErrors({});
+            const schema = Yup.object().shape({
+                name: Yup.string()
+                    .required("Nome obrigatório!")
+                    .min(3, "O nome precisa ter no mínimo 3 caracteres")
+                    .max(30, "O nome precisa ter no máximo 30 caracteres"),
+                email: Yup.string()
+                    .required("Email obrigatório!")
+                    .email("O email precisa ser válido!"),
+                cidade: Yup.string()
+                    .min(3, "O nome da cidade precisa ter no mínimo 3 caracteres")
+                    .max(30, "O nome da cidade precisa ter no máximo 30 caracteres"),
+                endereco: Yup.string()
+                    .required("Região obrigatório!")
+                    .min(3, "O nome da região precisa ter no mínimo 3 caracteres")
+                    .max(30, "O nome da região precisa ter no máximo 30 caracteres"),
+            });
 
+            let data = { name, email, telefone, cidade, endereco };
+            await schema.validate(data, { abortEarly: false });
+
+            updateUser(data);
         } catch (err) {
+            console.log(err);
+            if (err instanceof Yup.ValidationError) {
+                err.inner.forEach((error) => {
+                    setValidationErrors((state) => {
+                        return {
+                            ...state,
+                            [error.path || ""]: error.message,
+                        };
+                    });
+                });
 
+                return Toast.show({
+                    type: "error",
+                    text1: "Erro",
+                    text2: err.inner[0].message,
+                });
+            }
         }
     }
 
@@ -46,7 +86,7 @@ export default function Perfil({ navigation }) {
                             textContentType="name"
                             autoCapitalize="words"
                             autoCompleteType="name"
-                            // error={!!validationErrors["nome"]}
+                            error={!!validationErrors["name"]}
                             onChangeText={(text) => setName(text)}
                             style={styles.inputNome}
                         ></TextInput>
@@ -61,7 +101,7 @@ export default function Perfil({ navigation }) {
                             textContentType="emailAddress"
                             autoCapitalize="none"
                             autoCompleteType="email"
-                            // error={!!validationErrors["email"]}
+                            error={!!validationErrors["email"]}
                             onChangeText={(text) => setEmail(text)}
                             style={styles.inputEmail}
                         ></TextInput>
@@ -88,10 +128,10 @@ export default function Perfil({ navigation }) {
                             nome="cidade"
                             value={cidade}
                             autoCapitalize="words"
-                            // error={!!validationErrors["cidade"]}
+                            error={!!validationErrors["cidade"]}
                             onChangeText={(text) => setCidade(text)}
                             style={styles.inputNome}
-                        ></TextInput>
+                        />
 
                         <Text style={styles.textTelefone}>Endereço</Text>
                         <TextInput
@@ -100,10 +140,10 @@ export default function Perfil({ navigation }) {
                             nome="endereco"
                             value={endereco}
                             autoCapitalize="words"
-                            // error={!!validationErrors["endereco"]}
+                            error={!!validationErrors["endereco"]}
                             onChangeText={(text) => setEndereco(text)}
                             style={styles.inputNome}
-                        ></TextInput>
+                        />
 
                         <View style={styles.buttonContainer}>
                             <Button

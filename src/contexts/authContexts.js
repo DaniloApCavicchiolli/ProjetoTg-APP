@@ -8,8 +8,9 @@ export const AuthContext = createContext({
   user: {},
   userToken: {},
   loading: false,
-  signIn({ email, senha }) {},
-  signOut() {},
+  signIn({ email, senha }) { },
+  signOut() { },
+  updateUser() { },
 });
 
 export function AuthProvider({ children }) {
@@ -24,7 +25,7 @@ export function AuthProvider({ children }) {
         "@RealCotacoes:user",
         "@RealCotacoes:token",
       ]);
-      
+
 
       if (storagedToken[1] && storagedUser[1]) {
         api.defaults.headers.authorization = `Bearer ${storagedToken[1]}`;
@@ -39,11 +40,8 @@ export function AuthProvider({ children }) {
 
   /* Função para logar */
   const signIn = useCallback(async ({ email, password }) => {
-    console.log('email', email);
-    console.log('password', password);
     const response = await api.post("/auth", { email, password });
     api.defaults.headers.authorization = `Bearer ${response.data.token}`;
-    console.log('response', response);
     setUser(response.data.user);
     setUserToken(response.data.token);
 
@@ -70,32 +68,67 @@ export function AuthProvider({ children }) {
 
   /* Função para deslogar */
   const signOut = useCallback(async () => {
-    try{
-    await AsyncStorage.removeItem("@RealCotacoes:user");
-    await AsyncStorage.removeItem("@RealCotacoes:token");
+    try {
+      await AsyncStorage.removeItem("@RealCotacoes:user");
+      await AsyncStorage.removeItem("@RealCotacoes:token");
 
-    setUser(undefined);
+      setUser(undefined);
     } catch {
       Toast.show({
         type: "error",
-        position: "bottom",
+        position: "top",
         text1: "Erro",
         text2: "Não foi possível remover alguma informação."
       });
     }
   }, []);
 
+  const updateUser = async (data) => {
+    try {
+      const response = await api.put(`/users/${user?.id}`, {
+        name: data.name,
+        email: data.email,
+        telefone: data.telefone,
+        cidade: data.cidade,
+        endereco: data.endereco
+      });
+      if (response?.data !== null) {
+        setUser(response?.data);
+        await AsyncStorage.setItem(
+          "@RealCotacoes:user",
+          JSON.stringify(response?.data)
+        );
+        Toast.show({
+          type: "success",
+          position: "top",
+          text1: "Success",
+          text2: "Usuário atualizado com sucesso!."
+        });
+      }
+
+    } catch (err) {
+      console.log(err);
+      Toast.show({
+        type: "error",
+        position: "top",
+        text1: "Erro",
+        text2: "Não foi possível atualizar os dados do usuário."
+      });
+    }
+  }
+
   return (
-      <AuthContext.Provider
-        value={{ 
-          user,
-          userToken,
-          loading, 
-          signIn, 
-          signOut, 
-        }}
-      >
-          {children}
-      </AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        user,
+        userToken,
+        loading,
+        signIn,
+        signOut,
+        updateUser,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 }
