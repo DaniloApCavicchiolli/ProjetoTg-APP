@@ -166,7 +166,7 @@ export const styles = StyleSheet.create({
     buttonLogout: {
         width: 324,
         // height: 44,
-        marginTop: 28,
+        marginTop: 18,
         borderColor: theme.colors.button,
         borderRadius: 8,
     },

@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
         width: 324,
         // height: 44,
         marginTop: 15,
-        borderColor: theme.colors.secundary,
+        borderColor: theme.colors.secondary,
         borderRadius: 8,
     },
     esqueceuSenhaContainer: {

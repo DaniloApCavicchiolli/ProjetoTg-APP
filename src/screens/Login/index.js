@@ -143,7 +143,7 @@ export default function Login({ navigation }) {
               style={styles.buttonCadastro}
               labelStyle={{
                 fontFamily: theme.fonts.Poppins600,
-                color: theme.colors.secundary,
+                color: theme.colors.secondary,
                 fontSize: 18
               }}
             >

@@ -122,11 +122,10 @@ export default function Perfil({ navigation }) {
                             <Button
                                 onPress={signOut}
                                 mode="outlined"
-                                color={theme.colors.button}
                                 style={styles.buttonLogout}
                                 labelStyle={{
                                     fontFamily: theme.fonts.Poppins600,
-                                    color: theme.colors.secundary,
+                                    color: theme.colors.secondary,
                                     fontSize: 18
                                 }}
                             >
