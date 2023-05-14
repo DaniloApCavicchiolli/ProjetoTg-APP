@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, FlatList, SafeAreaView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import Header from "../../components/Header";
 import HeaderCategory from "../../components/HeaderCategory";
@@ -10,8 +11,9 @@ import { theme } from "../../global/themes";
 
 const SolicitarCotacao = () => {
     const [tela, setTela] = useState();
+    const navigation = useNavigation();
 
-    const orcamentos = [
+    const produtos = [
         {
             id: 1,
             nome: "Produto teste",
@@ -42,7 +44,7 @@ const SolicitarCotacao = () => {
                         Selecionar Produtos
                     </Text>
                 </View>
-                <FlatList data={orcamentos} style={{ flex: 1, width: '100%' }}
+                <FlatList data={produtos} style={{ flex: 1, width: '100%' }}
                     renderItem={({ item }) => {
                         return (
                             <CardProduto item={item} />
@@ -50,7 +52,7 @@ const SolicitarCotacao = () => {
                     }}
                     keyExtractor={(item) => item.id.toString()}
                 />
-                <TouchableOpacity style={styles.solicitarButtonEnviar}>
+                <TouchableOpacity style={styles.solicitarButtonEnviar} onPress={() => navigation.navigate('EnviarSolicitacao')}>
                     <Text style={styles.textButton}>
                         Enviar
                     </Text>

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textButton: {
-        fontFamily: theme.fonts.Poppins500,
+        fontFamily: theme.fonts.Poppins700,
         fontSize: 14,
         color: theme.colors.buttonTitle
     },

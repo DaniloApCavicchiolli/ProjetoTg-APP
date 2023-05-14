@@ -46,9 +46,9 @@ export default CardProduto = ({ item }) => {
             <TouchableOpacity style={styles.cardButton}>
                 <Text style={styles.textButton}>
                     {item.id == 1 ?
-                        <FontAwesome name="minus" size={24} color={"#fff"} />
-                        :
                         <FontAwesome name="plus" size={24} color={"#fff"} />
+                        :
+                        <FontAwesome name="minus" size={24} color={"#fff"} />
                     }
                 </Text>
             </TouchableOpacity>

@@ -15,9 +15,16 @@ export const styles = StyleSheet.create({
     },
     textHeader: {
         marginTop: 21,
-        fontFamily: theme.fonts.title500Kanit,
+        fontFamily: theme.fonts.Poppins500,
         fontSize: 20,
         color: "#FFFFFF",
+    },
+    icon: {
+        width: 40,
+        height: 45,
+        marginTop: 21,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     image: {
         width: 40,

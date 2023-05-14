@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, SafeAreaView, Image, ScrollView } from "react-native";
+import { View, Text, TextInput, SafeAreaView, ScrollView } from "react-native";
 import { Button } from "react-native-paper";
 import { TextInputMask } from "react-native-masked-text";
 import * as Yup from "yup";
 import Toast from "react-native-toast-message";
 
-import { styles } from "./styles";
+import HeaderCategory from "../../components/HeaderCategory";
+import Header from "../../components/Header";
+
 import { theme } from "../../global/themes";
 import { useAuth } from "../../hooks/useAuth";
-import logoImage from "../../../assets/seuLogo.png";
-import HeaderCategory from "../../components/HeaderCategory";
+import { styles } from "./styles";
 
 export default function Perfil() {
 
@@ -74,12 +75,10 @@ export default function Perfil() {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={styles.header}>
-                <Image source={logoImage} style={{ width: 175, height: 76 }} />
-            </View>
+            <Header title={"Perfil"} />
             <View style={styles.container}>
                 <HeaderCategory tela={tela} />
-                <ScrollView  style={{ flex: 1, width: '95%' }}>
+                <ScrollView style={{ flex: 1, width: '95%' }}>
                     <View style={styles.dadosContainer}>
                         <Text style={styles.textLabel}>Nome</Text>
                         <TextInput
