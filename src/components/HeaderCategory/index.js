@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome, Feather, FontAwesome5 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
 
-export default HeaderCategory = () => {
-    const [tela, setTela] = useState(1);
+export default HeaderCategory = ({ tela }) => {
+    const navigation = useNavigation();
 
     return (
         <View style={styles.categoryContainer}>
@@ -37,7 +38,7 @@ export default HeaderCategory = () => {
                     styles.buttonSolicitarOrcamentos,
                     { backgroundColor: tela === 2 ? "#7a9186" : "#FFFFFF" },
                 ]}
-                onPress={() => { setTela(2) }}
+                onPress={() => { navigation.navigate('SolicitarCotacao') }}
             >
                 <FontAwesome5
                     name="house-user"
@@ -60,7 +61,7 @@ export default HeaderCategory = () => {
                     styles.buttonPerfil,
                     { backgroundColor: tela === 1 ? "#7a9186" : "#FFFFFF" },
                 ]}
-                onPress={() => { setTela(1) }}
+                onPress={() => { navigation.navigate("Perfil") }}
             >
                 <Feather
                     name="user"

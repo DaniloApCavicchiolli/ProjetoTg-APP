@@ -19,6 +19,7 @@ import {
 
 import Login from './src/screens/Login';
 import Cadastro from "./src/screens/Cadastro";
+import SolicitarCotacao from "./src/screens/SolicitarCotacao";
 import { Routes } from "./src/routes/index";
 
 export default function App() {

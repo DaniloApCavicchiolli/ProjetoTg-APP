@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, SafeAreaView, Image, ScrollView } from "react-native";
 import { Button } from "react-native-paper";
 import { TextInputMask } from "react-native-masked-text";
@@ -11,7 +11,7 @@ import { useAuth } from "../../hooks/useAuth";
 import logoImage from "../../../assets/seuLogo.png";
 import HeaderCategory from "../../components/HeaderCategory";
 
-export default function Perfil({ navigation }) {
+export default function Perfil() {
 
     const { user, signOut, updateUser } = useAuth();
 
@@ -20,6 +20,7 @@ export default function Perfil({ navigation }) {
     const [telefone, setTelefone] = useState(user?.telefone);
     const [cidade, setCidade] = useState(user?.cidade);
     const [endereco, setEndereco] = useState(user?.endereco);
+    const [tela, setTela] = useState();
 
     const [validationErrors, setValidationErrors] = useState({});
 
@@ -67,13 +68,17 @@ export default function Perfil({ navigation }) {
         }
     }
 
+    useEffect(() => {
+        setTela(1);
+    }, []);
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.header}>
                 <Image source={logoImage} style={{ width: 175, height: 76 }} />
             </View>
             <View style={styles.container}>
-                <HeaderCategory />
+                <HeaderCategory tela={tela} />
                 <ScrollView  style={{ flex: 1, width: '95%' }}>
                     <View style={styles.dadosContainer}>
                         <Text style={styles.textLabel}>Nome</Text>

@@ -93,7 +93,7 @@ export function AuthProvider({ children }) {
         cidade: data.cidade,
         endereco: data.endereco
       });
-      if (response?.data !== null) {
+      if (response?.status === 200) {
         setUser(response?.data);
         await AsyncStorage.setItem(
           "@RealCotacoes:user",
