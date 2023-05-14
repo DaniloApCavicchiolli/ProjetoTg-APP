@@ -83,6 +83,7 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  /* Função para editar dados do usuário */
   const updateUser = async (data) => {
     try {
       const response = await api.put(`/users/${user?.id}`, {

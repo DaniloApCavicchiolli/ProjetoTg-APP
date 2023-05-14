@@ -45,7 +45,7 @@ export default function Cadastro({ navigation }) {
 
       let response = await api.post("/users", data);
 
-      if (response.data.status === 200) {
+      if (response?.data?.status === 200) {
         Toast.show({
           type: "success",
           text1: "Sucesso",

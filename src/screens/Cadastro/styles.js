@@ -106,9 +106,9 @@ export const styles = StyleSheet.create({
     },
     buttonCriarConta: {
         width: 324,
-        height: 44,
-        alignItems: 'center',
-        justifyContent: 'center',
+        height: 42,
+        // alignItems: 'center',
+        // justifyContent: 'center',
         backgroundColor: theme.colors.primary,
         borderRadius: 8
     },

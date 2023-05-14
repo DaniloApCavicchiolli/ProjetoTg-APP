@@ -28,7 +28,7 @@ export default HeaderCategory = () => {
                     ]}
                 >
                     {" "}
-                    Meus {"\n"} Orçamentos
+                    Minhas {"\n"} Solicitações
                 </Text>
             </TouchableOpacity>
 
@@ -51,7 +51,7 @@ export default HeaderCategory = () => {
                     ]}
                 >
                     {" "}
-                    Solicitar {"\n"} Orçamento
+                    Solicitar {"\n"} Cotação
                 </Text>
             </TouchableOpacity>
 
