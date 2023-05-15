@@ -61,6 +61,7 @@ export default function MinhasCotacoes() {
                         )
                     }}
                     keyExtractor={(item) => item.id.toString()}
+                    showsVerticalScrollIndicator={false}
                 />
             </View>
         </SafeAreaView>

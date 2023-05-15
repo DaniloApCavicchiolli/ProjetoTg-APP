@@ -51,6 +51,7 @@ const SolicitarCotacao = () => {
                         )
                     }}
                     keyExtractor={(item) => item.id.toString()}
+                    showsVerticalScrollIndicator={false}
                 />
                 <TouchableOpacity style={styles.solicitarButtonEnviar} onPress={() => navigation.navigate('EnviarSolicitacao')}>
                     <Text style={styles.textButton}>
