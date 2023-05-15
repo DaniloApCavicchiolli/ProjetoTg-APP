@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 5,
         fontSize: 15,
-        fontFamily: theme.fonts.title500Kanit,
+        fontFamily: theme.fonts.Poppins500,
     },
     buttonSolicitarOrcamentos: {
         width: 105,

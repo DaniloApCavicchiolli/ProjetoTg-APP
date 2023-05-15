@@ -15,7 +15,7 @@ export default HeaderCategory = ({ tela }) => {
                     styles.buttonMeusOrcamentos,
                     { backgroundColor: tela === 3 ? "#7a9186" : "#FFF" },
                 ]}
-                onPress={() => { setTela(3) }}
+                onPress={() => { navigation.navigate('MinhasCotacoes') }}
             >
                 <FontAwesome
                     name="dollar"
@@ -29,7 +29,7 @@ export default HeaderCategory = ({ tela }) => {
                     ]}
                 >
                     {" "}
-                    Minhas {"\n"} Solicitações
+                    Minhas {"\n"} Cotações
                 </Text>
             </TouchableOpacity>
 
