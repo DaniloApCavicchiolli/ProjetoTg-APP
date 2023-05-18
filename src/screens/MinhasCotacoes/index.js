@@ -38,23 +38,23 @@ export default function MinhasCotacoes() {
             <View style={styles.container}>
                 <View style={styles.filtrosContainer}>
                     <View style={styles.data}>
-                        <Text style={{ fontFamily: theme.fonts.title700Poppins }}>
+                        <Text style={{ fontFamily: theme.fonts.Poppins700 }}>
                             Data
                         </Text>
-                        <Text style={{ fontFamily: theme.fonts.title500Poppins, color: theme.colors.placeHolder }}>
-                            XX-XX-XXXX
+                        <Text style={{ fontFamily: theme.fonts.Poppins500, color: theme.colors.placeHolder }}>
+                            {cotacoes[0].data}
                         </Text>
                     </View>
                     <View style={styles.status}>
-                        <Text style={{ fontFamily: theme.fonts.title700Poppins }}>
+                        <Text style={{ fontFamily: theme.fonts.Poppins700 }}>
                             Status
                         </Text>
-                        <Text style={{ fontFamily: theme.fonts.title500Poppins, color: theme.colors.placeHolder }}>
+                        <Text style={{ fontFamily: theme.fonts.Poppins500, color: theme.colors.placeHolder }}>
                             Respondido
                         </Text>
                     </View>
                 </View>
-                <FlatList data={cotacoes} style={{ flex: 1, width: '100%' }}
+                <FlatList data={cotacoes} style={{ flex: 1, width: '95%' }}
                     renderItem={({ item }) => {
                         return (
                             <CardCotacao item={item} />

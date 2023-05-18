@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { theme } from '../../../global/themes';
 
 export const styles = StyleSheet.create({
-    orcamentosContainer: {
+    cotacaoContainer: {
         flex: 1,
         width: '100%',
         height: 327,
@@ -10,38 +10,38 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 10,
         borderRadius: 20,
-        backgroundColor: '#e0e2df'
+        backgroundColor: theme.colors.secondary
     },
-    orcamentoContainerTitle: {
+    cotacaoContainerTitle: {
         flex: 1,
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'transparent'
     },
-    orcamentoTitle: {
+    cotacaoTitle: {
         width: '95%',
         height: '60%',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 8,
-        backgroundColor: theme.colors.button
+        backgroundColor: theme.colors.primary
     },
-    orcamentoContainerProduto: {
+    cotacaoContainerProduto: {
         flex: 1,
         flexDirection: 'row',
         width: '85%',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    orcamentoProduto: {
+    cotacaoProduto: {
         width: '50%',
         height: '60%',
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
         // backgroundColor: 'yellow',
     },
-    orcamentoUnidade: {
+    cotacaoUnidade: {
         width: '50%',
         height: '60%',
         alignItems: 'flex-end',
@@ -49,14 +49,14 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         // backgroundColor: 'yellow',
     },
-    orcamentoValor: {
+    cotacaoValor: {
         width: '60%',
         height: '20%',
         alignItems: 'center',
         justifyContent: 'center',
         // backgroundColor: 'yellow',
     },
-    orcamentoContainerStatus: {
+    cotacaoContainerStatus: {
         width: '70%',
         height: '20%',
         alignItems: 'center',
@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: '#fff'
     },
-    orcamentoStatus: {
+    cotacaoStatus: {
         width: '50%',
         height: '100%',
         alignItems: 'center',
@@ -75,12 +75,12 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff',
         // backgroundColor: '#add8e6',
     },
-    orcamentoInformacoes: {
+    cotacaoInformacoes: {
         width: '50%',
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 8,
-        backgroundColor: theme.colors.button,
+        backgroundColor: theme.colors.primary,
     },
 })

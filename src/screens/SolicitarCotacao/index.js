@@ -44,7 +44,7 @@ const SolicitarCotacao = () => {
                         Selecionar Produtos
                     </Text>
                 </View>
-                <FlatList data={produtos} style={{ flex: 1, width: '100%' }}
+                <FlatList data={produtos} style={{ flex: 1, width: '95%' }}
                     renderItem={({ item }) => {
                         return (
                             <CardProduto item={item} />
