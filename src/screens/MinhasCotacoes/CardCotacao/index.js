@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
 import { theme } from "../../../global/themes";
 
 export default CardCotacao = ({ item }) => {
+    const navigation = useNavigation();
     return (
         <View style={styles.cotacaoContainer}>
             <View style={styles.cotacaoContainerTitle}>
@@ -49,7 +51,7 @@ export default CardCotacao = ({ item }) => {
                         {!item.valor ? 'Em analise...' : 'Respondido'}
                     </Text>
                 </View>
-                <TouchableOpacity onPress={() => { }}
+                <TouchableOpacity onPress={() => { navigation.navigate("ListaResposta") }}
                     style={styles.cotacaoInformacoes}>
                     <Text style={{ fontFamily: theme.fonts.Poppins500, fontSize: 15, color: "#fff" }}>
                         Informações

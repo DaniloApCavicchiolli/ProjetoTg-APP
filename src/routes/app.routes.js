@@ -5,6 +5,7 @@ import Perfil from '../screens/Perfil';
 import SolicitarCotacao from '../screens/SolicitarCotacao';
 import EnviarSolicitacao from '../screens/EnviarSolicitacao';
 import MinhasCotacoes from '../screens/MinhasCotacoes';
+import ListaResposta from '../screens/ListaRespostas';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export default function AppRoutes() {
             <Stack.Screen name="SolicitarCotacao" component={SolicitarCotacao} />
             <Stack.Screen name="EnviarSolicitacao" component={EnviarSolicitacao} />
             <Stack.Screen name="MinhasCotacoes" component={MinhasCotacoes} />
+            <Stack.Screen name="ListaResposta" component={ListaResposta} />
         </Stack.Navigator>
     )
 }
