@@ -8,9 +8,18 @@ import { theme } from "../../../global/themes";
 
 export default CardRespostas = ({ item }) => {
     const navigation = useNavigation();
+
+    const handleInformacoes = async (item) => {
+        if (item.valor !== null) {
+            navigation.navigate('Fornecedor', {
+                data: item
+            })
+        }
+    };
+
     return (
         <View style={styles.containerFornecedores}>
-            <TouchableOpacity onPress={() => { }} style={styles.containerfornecedor}>
+            <TouchableOpacity onPress={() => { handleInformacoes(item) }} style={styles.containerfornecedor}>
                 <Text style={{ fontFamily: theme.fonts.Poppins400, fontSize: 15, color: theme.colors.placeHolder }}>
                     {item.nome}
                 </Text>
