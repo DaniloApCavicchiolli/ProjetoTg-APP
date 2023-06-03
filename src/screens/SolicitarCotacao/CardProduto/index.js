@@ -1,32 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import DropDownPicker from "react-native-dropdown-picker";
 
 import { styles } from "./styles";
+import { theme } from "../../../global/themes";
 
-export default CardProduto = ({ item }) => {
+export default CardProduto = ({ item, produtos }) => {
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState('');
+    const [items, setItems] = useState(produtos);
+
     return (
         <View style={styles.cardContainer}>
-            <View style={styles.containerText}>
-                <View style={styles.containerNome}>
-                    <Text style={styles.textTitle}>
-                        Nome
-                    </Text>
-                    <Text style={styles.textItem}>
-                        {item.nome}
-                    </Text>
-                </View>
-                <View style={styles.containerQuantidade}>
-                    <Text style={styles.textTitle}>
-                        Quantidade
-                    </Text>
-                    <Text style={styles.textItem}>
-                        {item.quantidade}
-                    </Text>
-                </View>
+            <View style={styles.containerProduto}>
+                <DropDownPicker
+                    placeholder="Produtos"
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={setOpen}
+                    setValue={setValue}
+                    setItems={setItems}
+                    zIndex={1000}
+                    containerStyle={{ width: '70%' }}
+                    textStyle={styles.textTitle}
+                    listMode="MODAL"
+                    style={{ borderColor: theme.colors.primary }}
+                    modalTitle="Selecione o produto"
+                    modalProps={{
+                        animationType: 'slide',
+                    }}
+                    modalTitleStyle={{
+                        fontWeight: 'bold',
+                    }}
+                />
             </View>
             <View style={styles.containerText}>
-                <View style={styles.containerNome}>
+                <View style={styles.containerMarca}>
                     <Text style={styles.textTitle}>
                         Marca
                     </Text>
@@ -36,10 +47,10 @@ export default CardProduto = ({ item }) => {
                 </View>
                 <View style={styles.containerQuantidade}>
                     <Text style={styles.textTitle}>
-                        Pagamento
+                        Quantidade
                     </Text>
                     <Text style={styles.textItem}>
-                        {item.formaPagamento}
+                        {item.quantidade}
                     </Text>
                 </View>
             </View>

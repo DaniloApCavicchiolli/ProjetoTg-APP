@@ -13,6 +13,23 @@ export const styles = StyleSheet.create({
         backgroundColor: theme.colors.secondary
         // backgroundColor: '#e0e2df'
     },
+    containerProduto: {
+        flexDirection: 'row',
+        width: '100%',
+        height: 58,
+        // marginBottom: 8,
+        marginTop: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10,
+        // backgroundColor: theme.colors.button,
+    },
+    dropPiker: {
+        // width: '100%',
+        // height: 50,
+        // marginLeft: 2
+        // marginTop: 6,
+    },
     containerText: {
         flex: 1,
         flexDirection: 'row',
@@ -26,6 +43,14 @@ export const styles = StyleSheet.create({
         width: '60%',
         height: '80%',
         paddingLeft: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        // backgroundColor: 'green',
+    },
+    containerMarca: {
+        width: '60%',
+        height: '80%',
+        paddingLeft: 10,
         alignItems: 'flex-start',
         justifyContent: 'center',
         // backgroundColor: 'green',
@@ -36,11 +61,13 @@ export const styles = StyleSheet.create({
         paddingLeft: 10,
         alignItems: 'flex-start',
         justifyContent: 'center',
+        zIndex: 1
         // backgroundColor: 'blue',
     },
     textTitle: {
-        fontFamily: theme.fonts.Poppins700, 
-        fontSize: 14
+        fontFamily: theme.fonts.Poppins700,
+        fontSize: 14,
+        // backgroundColor: 'yellow'
     },
     textItem: {
         fontFamily: theme.fonts.Poppins500,
@@ -57,8 +84,8 @@ export const styles = StyleSheet.create({
         backgroundColor: theme.colors.primary,
     },
     textButton: {
-        fontFamily: theme.fonts.Poppins500, 
-        fontSize: 14, 
+        fontFamily: theme.fonts.Poppins500,
+        fontSize: 14,
         color: theme.colors.buttonTitle
     },
     solicitarButtonEnviar: {

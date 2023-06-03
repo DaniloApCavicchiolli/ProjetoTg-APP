@@ -13,20 +13,43 @@ const SolicitarCotacao = () => {
     const [tela, setTela] = useState();
     const navigation = useNavigation();
 
-    const produtos = [
+    const dados = [
         {
             id: 1,
             nome: "Produto teste",
             quantidade: '5',
-            marca: "Marca",
+            marca: "Marca testanto marca",
             formaPagamento: "Pagamento",
         },
         {
             id: 2,
             nome: "Produto teste 2",
             quantidade: '10',
-            marca: "Marca",
+            marca: "Marca testanto marca",
             formaPagamento: "Pagamento",
+        }
+    ]
+
+    const produtos = [
+        {
+            label: "Produto 1",
+            value: "Produto 1"
+        },
+        {
+            label: "Produto 2",
+            value: "Produto 2"
+        },
+        {
+            label: "Produto 3",
+            value: "Produto 3"
+        },
+        {
+            label: "Produto 4",
+            value: "Produto 4"
+        },
+        {
+            label: "Produto 5",
+            value: "Produto 5"
         }
     ]
 
@@ -44,10 +67,10 @@ const SolicitarCotacao = () => {
                         Selecionar Produtos
                     </Text>
                 </View>
-                <FlatList data={produtos} style={{ flex: 1, width: '95%' }}
+                <FlatList data={dados} style={{ flex: 1, width: '95%' }}
                     renderItem={({ item }) => {
                         return (
-                            <CardProduto item={item} />
+                            <CardProduto item={item} produtos={produtos} />
                         )
                     }}
                     keyExtractor={(item) => item.id.toString()}
