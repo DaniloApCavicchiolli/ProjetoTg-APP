@@ -1,15 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import DropDownPicker from "react-native-dropdown-picker";
 
 import { styles } from "./styles";
 import { theme } from "../../../global/themes";
+import { api } from "../../../services/api";
 
-export default CardProduto = ({ item, produtos }) => {
+export default CardProduto = ({ item }) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState('');
-    const [items, setItems] = useState(produtos);
+    const [items, setItems] = useState([]);
+    const [produtos, setProdutos] = useState([]);
+    const [marca, setMarca] = useState();
+    const [quantidade, setQuantidade] = useState();
+
+    const Produtos = async () => {
+        try {
+            const response = await api.get(`/produto_showAll`);
+            if (response?.status === 200) {
+                let prod = [];
+                response.data?.map((item) => {
+                    if (!prod.includes(item.nome)) {
+                        prod.push(item.nome)
+                    }
+                });
+                setItems(prod?.map(item => ({
+                    label: item, value: item
+                })));
+                setProdutos(response.data);
+            }
+        } catch (err) {
+            console.log(err);
+            return;
+        }
+    }
+
+    useEffect(() => {
+        Produtos();
+    }, []);
+
+    useEffect(() => {
+        if (produtos) {
+            produtos.forEach((item) => {
+                if (item.nome === value) {
+                    setMarca(item.marca);
+                }
+            })
+        }
+    }, [value]);
 
     return (
         <View style={styles.cardContainer}>
@@ -41,17 +80,24 @@ export default CardProduto = ({ item, produtos }) => {
                     <Text style={styles.textTitle}>
                         Marca
                     </Text>
-                    <Text style={styles.textItem}>
-                        {item.marca}
-                    </Text>
+                    <TextInput
+                        placeholder={"Marca"}
+                        value={marca}
+                        editable={false}
+                        style={[styles.textItem, styles.inputQuantiade]}>
+                    </TextInput>
                 </View>
                 <View style={styles.containerQuantidade}>
                     <Text style={styles.textTitle}>
                         Quantidade
                     </Text>
-                    <Text style={styles.textItem}>
-                        {item.quantidade}
-                    </Text>
+                    <TextInput
+                        placeholder={"Quantidade"}
+                        value={quantidade}
+                        keyboardType="numeric"
+                        onChangeText={(text) => setQuantidade(text)}
+                        style={[styles.textItem, styles.inputQuantiade]}>
+                    </TextInput>
                 </View>
             </View>
             <TouchableOpacity style={styles.cardButton}>

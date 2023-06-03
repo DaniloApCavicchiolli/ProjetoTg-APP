@@ -61,13 +61,18 @@ export const styles = StyleSheet.create({
         paddingLeft: 10,
         alignItems: 'flex-start',
         justifyContent: 'center',
-        zIndex: 1
+        zIndex: 1,
         // backgroundColor: 'blue',
     },
     textTitle: {
         fontFamily: theme.fonts.Poppins700,
         fontSize: 14,
         // backgroundColor: 'yellow'
+    },
+    inputQuantiade: {
+        width: '100%',
+        height: 40,
+        // backgroundColor: 'red'
     },
     textItem: {
         fontFamily: theme.fonts.Poppins500,
