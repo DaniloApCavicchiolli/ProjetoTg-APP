@@ -58,5 +58,16 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: theme.colors.primary,
     },
+    dropPiker: {
+        width: '100%',
+        height: 53,
+        marginTop: 10
+        // backgroundColor: 'yellow'
+    },
+    textTitle: {
+        fontFamily: theme.fonts.Poppins700,
+        fontSize: 16,
+        // backgroundColor: 'yellow'
+    },
 
 })
