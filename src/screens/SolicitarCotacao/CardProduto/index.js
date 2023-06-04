@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import DropDownPicker from "react-native-dropdown-picker";
+import Toast from "react-native-toast-message";
 
 import { styles } from "./styles";
 import { theme } from "../../../global/themes";
 import { api } from "../../../services/api";
 
-export default CardProduto = ({ item }) => {
+export default CardProduto = ({ item, index, solicitacoes, setSolicitacoes }) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState('');
     const [items, setItems] = useState([]);
-    const [produtos, setProdutos] = useState([]);
-    const [marca, setMarca] = useState();
-    const [quantidade, setQuantidade] = useState();
+    // const [produtos, setProdutos] = useState([]);
+    // const [marca, setMarca] = useState();
+    // const [prodId, setProdId] = useState();
+    // const [quantidade, setQuantidade] = useState();
 
     const Produtos = async () => {
         try {
@@ -28,27 +30,53 @@ export default CardProduto = ({ item }) => {
                 setItems(prod?.map(item => ({
                     label: item, value: item
                 })));
-                setProdutos(response.data);
+                // setProdutos(response.data);
             }
         } catch (err) {
             console.log(err);
             return;
         }
-    }
+    };
+
+    // const AddCard = () => {
+    //     if (quantidade && value) {
+    //         solicitacoes.push({
+    //             produto_id: prodId,
+    //             nome: value,
+    //             quantidade: quantidade,
+    //             marca: marca,
+    //         });
+    //         setSolicitacoes([...solicitacoes]);
+    //     } else {
+    //         Toast.show({
+    //             type: "error",
+    //             position: "top",
+    //             text1: "Erro",
+    //             text2: "Selecionar produto e/ou adicionar quantidade",
+    //         });
+    //         return false;
+    //     }
+    // };
+
+    // const RemoveCard = (index) => {
+    //     solicitacoes.splice(index, 1)
+    //     setSolicitacoes([...solicitacoes])
+    // };
 
     useEffect(() => {
         Produtos();
     }, []);
 
-    useEffect(() => {
-        if (produtos) {
-            produtos.forEach((item) => {
-                if (item.nome === value) {
-                    setMarca(item.marca);
-                }
-            })
-        }
-    }, [value]);
+    // useEffect(() => {
+    //     if (produtos) {
+    //         produtos.forEach((item) => {
+    //             if (item.nome === value) {
+    //                 setMarca(item.marca);
+    //                 setProdId(item.id);
+    //             }
+    //         })
+    //     }
+    // }, [value]);
 
     return (
         <View style={styles.cardContainer}>
@@ -82,7 +110,7 @@ export default CardProduto = ({ item }) => {
                     </Text>
                     <TextInput
                         placeholder={"Marca"}
-                        value={marca}
+                        value={'marca'}
                         editable={false}
                         style={[styles.textItem, styles.inputQuantiade]}>
                     </TextInput>
@@ -93,14 +121,27 @@ export default CardProduto = ({ item }) => {
                     </Text>
                     <TextInput
                         placeholder={"Quantidade"}
-                        value={quantidade}
+                        value={'5'}
                         keyboardType="numeric"
-                        onChangeText={(text) => setQuantidade(text)}
+                        editable={false}
+                        // onChangeText={(text) => setQuantidade(text)}
                         style={[styles.textItem, styles.inputQuantiade]}>
                     </TextInput>
                 </View>
             </View>
-            <TouchableOpacity style={styles.cardButton}>
+            {index === 0 ?
+                (<TouchableOpacity style={styles.cardButton} onPress={() => AddCard()}>
+                    <Text style={styles.textButton}>
+                        {<FontAwesome name="plus" size={24} color={"#fff"} />}
+                    </Text>
+                </TouchableOpacity>)
+                :
+                (<TouchableOpacity style={styles.cardButton} onPress={() => RemoveCard(index)}>
+                    <Text style={styles.textButton}>
+                        {<FontAwesome name="minus" size={24} color={"#fff"} />}
+                    </Text>
+                </TouchableOpacity>)}
+            {/* <TouchableOpacity style={styles.cardButton}>
                 <Text style={styles.textButton}>
                     {item.id == 1 ?
                         <FontAwesome name="plus" size={24} color={"#fff"} />
@@ -108,7 +149,7 @@ export default CardProduto = ({ item }) => {
                         <FontAwesome name="minus" size={24} color={"#fff"} />
                     }
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     )
 }

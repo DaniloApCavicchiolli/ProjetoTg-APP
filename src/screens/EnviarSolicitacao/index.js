@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
 import Header from "../../components/Header";
 import { styles } from "./styles";
 
-export default function EnviarSolicitacao() {
+export default function EnviarSolicitacao({ route }) {
     const navigation = useNavigation();
+    const [solicitacao, setSolicitacao] = useState();
+    console.log('route', solicitacao);
 
     const produtos = [
         { id: 1, nome: 'Produto A', quantidade: '2' },
@@ -17,6 +19,12 @@ export default function EnviarSolicitacao() {
         { id: 7, nome: 'Produto F', quantidade: '9' },
         { id: 8, nome: 'Produto G', quantidade: '40' },
     ]
+
+    useEffect(() => {
+        if (route?.params?.data) {
+            setSolicitacao(route?.params?.data)
+        }
+    }, [route]);
     return (
         <SafeAreaView style={styles.areaView}>
             <Header title={'Enviar Solicitação'} icon={true} onPress={() => navigation.navigate('SolicitarCotacao')} />
