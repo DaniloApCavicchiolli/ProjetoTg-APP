@@ -4,12 +4,15 @@ import { View, Text, FlatList, SafeAreaView } from "react-native";
 import HeaderCategory from "../../components/HeaderCategory";
 import Header from "../../components/Header";
 import CardCotacao from "./CardCotacao";
+import { useAuth } from "../../hooks/useAuth";
 
 import { styles } from "./styles";
 import { theme } from "../../global/themes";
+import { api } from "../../services/api";
 
 export default function MinhasCotacoes() {
-    const [tela, setTela] = useState();
+    const { user } = useAuth();
+    // const [cotacoes, setCotacoes] = useState();
     const cotacoes = [
         {
             id: 1,
@@ -27,14 +30,25 @@ export default function MinhasCotacoes() {
         }
     ]
 
-    useEffect(() => {
-        setTela(3);
-    }, []);
+    // const loadSolicitacoes = async () => {
+    //     try {
+    //         const response = await api.get(`/solicitacao/${user.id}`);
+    //         if (response?.status === 200) {
+    //             setCotacoes(response.data);
+    //         }
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     loadSolicitacoes();
+    // }, []);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <Header title={'Minhas Cotações'} />
-            <HeaderCategory tela={tela} />
+            <HeaderCategory tela={3} />
             <View style={styles.container}>
                 <View style={styles.filtrosContainer}>
                     <View style={styles.data}>
