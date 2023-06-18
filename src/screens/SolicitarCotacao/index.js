@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, FlatList, SafeAreaView, TextInput } from 
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useFocusEffect } from '@react-navigation/native';
+import Toast from "react-native-toast-message";
 
 import Header from "../../components/Header";
 import HeaderCategory from "../../components/HeaderCategory";
@@ -70,7 +71,7 @@ const SolicitarCotacao = () => {
                 type: "error",
                 position: "top",
                 text1: "Erro",
-                text2: "Selecionar produto e/ou adicionar quantidade",
+                text2: "Selecione produto e adicione quantidade",
             });
             return false;
         }

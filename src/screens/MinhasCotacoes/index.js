@@ -12,38 +12,22 @@ import { api } from "../../services/api";
 
 export default function MinhasCotacoes() {
     const { user } = useAuth();
-    // const [cotacoes, setCotacoes] = useState();
-    const cotacoes = [
-        {
-            id: 1,
-            data: '24/08/2021',
-            produto: "Produto 2",
-            quantidade: "5 unidades",
-            valor: "R$280.000,00"
-        },
-        {
-            id: 2,
-            data: '24/08/2021',
-            produto: "Produto 5",
-            quantidade: "5 unidades",
-            valor: null
+    const [cotacoes, setCotacoes] = useState();
+
+    const loadSolicitacoes = async () => {
+        try {
+            const response = await api.get(`/solicitacao/${user.id}`);
+            if (response?.status === 200) {
+                setCotacoes(response.data.content);
+            }
+        } catch (err) {
+            console.log(err);
         }
-    ]
+    };
 
-    // const loadSolicitacoes = async () => {
-    //     try {
-    //         const response = await api.get(`/solicitacao/${user.id}`);
-    //         if (response?.status === 200) {
-    //             setCotacoes(response.data);
-    //         }
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     loadSolicitacoes();
-    // }, []);
+    useEffect(() => {
+        loadSolicitacoes();
+    }, []);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -56,7 +40,7 @@ export default function MinhasCotacoes() {
                             Data
                         </Text>
                         <Text style={{ fontFamily: theme.fonts.Poppins500, color: theme.colors.placeHolder }}>
-                            {cotacoes[0].data}
+                            {"15/06/2023"}
                         </Text>
                     </View>
                     <View style={styles.status}>

@@ -1,18 +1,22 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { format } from 'date-fns';
 
 import { styles } from "./styles";
 import { theme } from "../../../global/themes";
 
 export default CardCotacao = ({ item }) => {
     const navigation = useNavigation();
+    const dataCotacao = item.fk_cotacao.map(item => item.created_at);
+    const valorCotacao = item.fk_cotacao.map(item => item.valor);
+
     return (
         <View style={styles.cotacaoContainer}>
             <View style={styles.cotacaoContainerTitle}>
                 <View style={styles.cotacaoTitle}>
                     <Text style={{ fontFamily: theme.fonts.Poppins700, color: '#fff', fontSize: 15 }}>
-                        {item.produto}
+                        {item.nome}
                     </Text>
                 </View>
             </View>
@@ -22,7 +26,7 @@ export default CardCotacao = ({ item }) => {
                         Data Cotação
                     </Text>
                     <Text style={{ fontFamily: theme.fonts.Poppins500, fontSize: 15, color: theme.colors.buttonTitle }}>
-                        {item.data}
+                        {dataCotacao.length > 0 ? format(new Date(dataCotacao), 'dd/MM/yyyy') : 'Aguardando'}
                     </Text>
                 </View>
                 <View style={styles.cotacaoUnidade}>
@@ -39,7 +43,14 @@ export default CardCotacao = ({ item }) => {
                     Melhor valor
                 </Text>
                 <Text style={{ fontFamily: theme.fonts.Poppins500, fontSize: 25, color: theme.colors.buttonTitle }}>
-                    {item.valor}
+                    {/* {item.valor} */}
+                    {
+                        item.fk_cotacao.length == 0 ?
+                            'X' :
+                            `R$ ${Math.min.apply(Math, item.fk_cotacao
+                                .filter(data => data.valor > 0)
+                                .map(i => i.valor))}`
+                    }
                 </Text>
             </View>
             <View style={styles.cotacaoContainerStatus}>
@@ -48,7 +59,7 @@ export default CardCotacao = ({ item }) => {
                         Status
                     </Text>
                     <Text style={{ fontFamily: theme.fonts.Poppins400, fontSize: 15, color: theme.colors.placeHolder }}>
-                        {!item.valor ? 'Em analise...' : 'Respondido'}
+                        {valorCotacao > 0 ? 'Respondido' : 'Aguardando'}
                     </Text>
                 </View>
                 <TouchableOpacity onPress={() => { navigation.navigate("ListaResposta") }}
