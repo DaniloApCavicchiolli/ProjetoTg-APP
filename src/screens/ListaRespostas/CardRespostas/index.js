@@ -21,7 +21,7 @@ export default CardRespostas = ({ item }) => {
         <View style={styles.containerFornecedores}>
             <TouchableOpacity onPress={() => { handleInformacoes(item) }} style={styles.containerfornecedor}>
                 <Text style={{ fontFamily: theme.fonts.Poppins400, fontSize: 15, color: theme.colors.placeHolder }}>
-                    {item.nome}
+                    {item.nomeFornecedor}
                 </Text>
                 {item.valor === null
                     ?

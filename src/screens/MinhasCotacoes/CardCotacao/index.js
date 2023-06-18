@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { format } from 'date-fns';
@@ -8,8 +8,21 @@ import { theme } from "../../../global/themes";
 
 export default CardCotacao = ({ item }) => {
     const navigation = useNavigation();
-    const dataCotacao = item.fk_cotacao.map(item => item.created_at);
+    const [dataCotacao, setDataCotacao] = useState();
+    const data = item.fk_cotacao.map(item => item.created_at);
     const valorCotacao = item.fk_cotacao.map(item => item.valor);
+
+    async function handleSubmit(item) {
+        navigation.navigate("ListaResposta", {
+            data: item
+        })
+    };
+
+    useEffect(() => {
+        if (data.length > 0) {
+            setDataCotacao(format(new Date(data[0]), 'dd/MM/yyyy'))
+        }
+    }, []);
 
     return (
         <View style={styles.cotacaoContainer}>
@@ -26,7 +39,7 @@ export default CardCotacao = ({ item }) => {
                         Data Cotação
                     </Text>
                     <Text style={{ fontFamily: theme.fonts.Poppins500, fontSize: 15, color: theme.colors.buttonTitle }}>
-                        {dataCotacao.length > 0 ? format(new Date(dataCotacao), 'dd/MM/yyyy') : 'Aguardando'}
+                        {dataCotacao ? dataCotacao : 'Aguardando'}
                     </Text>
                 </View>
                 <View style={styles.cotacaoUnidade}>
@@ -62,7 +75,7 @@ export default CardCotacao = ({ item }) => {
                         {valorCotacao > 0 ? 'Respondido' : 'Aguardando'}
                     </Text>
                 </View>
-                <TouchableOpacity onPress={() => { navigation.navigate("ListaResposta") }}
+                <TouchableOpacity onPress={() => { handleSubmit(item) }}
                     style={styles.cotacaoInformacoes}>
                     <Text style={{ fontFamily: theme.fonts.Poppins500, fontSize: 15, color: "#fff" }}>
                         Informações

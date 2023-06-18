@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { format } from "date-fns";
 
 import Header from "../../components/Header";
 import CardRespostas from "./CardRespostas";
@@ -8,66 +9,52 @@ import CardRespostas from "./CardRespostas";
 import { styles } from "./styles";
 import { theme } from "../../global/themes";
 
-export default function ListaResposta() {
+export default function ListaResposta({ route }) {
     const navigation = useNavigation();
+    const [cotacao, setCotacao] = useState(route?.params?.data);
+    const [dataSolicitacao, setDataSolicitacao] = useState();
+    const data = cotacao.createdAt;
+    let numRespostas = cotacao.fk_cotacao?.length;
 
-    const cotacoes = [
-        {
-            id: 1,
-            data: '24/08/2021',
-            nome: 'Fornecedor 1',
-            produto: "Produto 1",
-            quantidade: "5 unidades",
-            valor: 20.35
-        },
-        {
-            id: 2,
-            data: '24/08/2021',
-            nome: 'Fornecedor 2',
-            produto: "Produto 2",
-            quantidade: "5 unidades",
-            valor: 35.00
-        },
-        {
-            id: 3,
-            data: '24/08/2021',
-            nome: 'Fornecedor 3',
-            produto: "Produto 3",
-            quantidade: "5 unidades",
-            valor: 50.30
-        },
-        {
-            id: 4,
-            data: '24/08/2021',
-            nome: 'Fornecedor 4',
-            produto: "Produto 4",
-            quantidade: "5 unidades",
-            valor: 0
-        },
-        {
-            id: 5,
-            data: '24/08/2021',
-            nome: 'Fornecedor 5',
-            produto: "Produto 5",
-            quantidade: "5 unidades",
-            valor: null
-        },
-    ]
+    const cotacoes = [];
+    cotacao.fk_cotacao.forEach((item) => {
+        return cotacoes.push({
+            id: item.id,
+            nomeFornecedor: item.fk_fornecedor.name,
+            telefoneFornecedor: item.fk_fornecedor.telefone,
+            enderecoFornecedor: item.fk_fornecedor.endereco,
+            nomeProduto: cotacao.nome,
+            marcaProduto: cotacao.marca,
+            quantidadeProduto: cotacao.quantidade,
+            formaPagamento: cotacao.forma_pagamento,
+            dataResposta: item.created_at,
+            valor: item.valor,
+        })
+    });
+
+    useEffect(() => {
+        if (route?.params?.data) {
+            setCotacao(route?.params?.data)
+        }
+    }, [route]);
+
+    useEffect(() => {
+        if (data) {
+            setDataSolicitacao(format(new Date(data), 'dd/MM/yyyy'))
+        }
+    }, []);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <Header title={'Produto 2'} icon={true} onPress={() => { navigation.navigate("MinhasCotacoes") }} />
+            <Header title={cotacao.nome} icon={true} onPress={() => { navigation.navigate("MinhasCotacoes") }} />
             <View style={styles.container}>
-                {/* <View styles={styles.title}>
-                    <Text style={{ fontFamily: theme.fonts.Poppins700 }}>Produto 2</Text>
-                </View> */}
                 <View style={styles.filtrosContainer}>
                     <View style={styles.data}>
                         <Text style={{ fontFamily: theme.fonts.Poppins700 }}>
                             Data do pedido
                         </Text>
                         <Text style={{ fontFamily: theme.fonts.Poppins500, color: theme.colors.placeHolder }}>
-                            {cotacoes[0].data}
+                            {dataSolicitacao}
                         </Text>
                     </View>
                     <View style={styles.status}>
@@ -75,7 +62,7 @@ export default function ListaResposta() {
                             Nº de Respostas
                         </Text>
                         <Text style={{ fontFamily: theme.fonts.Poppins500, color: theme.colors.placeHolder }}>
-                            {cotacoes.length + ' respostas'}
+                            {numRespostas + ' respostas'}
                         </Text>
                     </View>
                 </View>
