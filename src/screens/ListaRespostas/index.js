@@ -31,6 +31,7 @@ export default function ListaResposta({ route }) {
             valor: item.valor,
         })
     });
+    cotacoes?.sort((a, b) => a.valor - b.valor);
 
     useEffect(() => {
         if (route?.params?.data) {

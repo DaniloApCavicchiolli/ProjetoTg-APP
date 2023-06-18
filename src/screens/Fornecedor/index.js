@@ -2,32 +2,18 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, SafeAreaView, ScrollView } from 'react-native';
 import { TextInputMask } from "react-native-masked-text";
 import { useNavigation } from "@react-navigation/native";
+import { format } from 'date-fns';
 
 import { theme } from '../../global/themes';
 import { styles } from './styles';
 
 export default function Fornecedor({ route }) {
-    const obj = {
-        id: 1,
-        data: '24/08/2021',
-        nome: 'Fornecedor 1',
-        produto: "Produto 1",
-        marca: "Marca 1",
-        quantidade: "5 unidades",
-        valor: 20.35,
-        forma_pagamento: 'Cartão',
-        telefone: '(99) 99999-9999',
-        endereco: 'Rua do Fornecedor'
-    }
     const { data } = route.params;
-    // console.log('RouteData', data);
-
-    const [dados, setDados] = useState(obj);
     const navigation = useNavigation();
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <Header title={data.nome} icon={true} onPress={() => { navigation.navigate("ListaResposta") }} />
+            <Header title={data.nomeFornecedor} icon={true} onPress={() => { navigation.navigate("ListaResposta") }} />
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.containerInformacoes}>
@@ -40,7 +26,7 @@ export default function Fornecedor({ route }) {
                                     Nome do Produto
                                 </Text>
                                 <Text style={styles.textItem}>
-                                    {dados.produto}
+                                    {data.nomeProduto}
                                 </Text>
                             </View>
                         </View>
@@ -50,7 +36,7 @@ export default function Fornecedor({ route }) {
                                     Marca do Produto
                                 </Text>
                                 <Text style={styles.textItem}>
-                                    {dados.marca}
+                                    {data.marcaProduto}
                                 </Text>
                             </View>
                             <View style={styles.unidade}>
@@ -58,7 +44,7 @@ export default function Fornecedor({ route }) {
                                     Unidade(s)
                                 </Text>
                                 <Text style={styles.textItem}>
-                                    {dados.quantidade}
+                                    {data.quantidadeProduto}
                                 </Text>
                             </View>
                         </View>
@@ -68,7 +54,7 @@ export default function Fornecedor({ route }) {
                                     Valor da cotagem
                                 </Text>
                                 <Text style={styles.textItem}>
-                                    R$ {dados.valor.toFixed(2)}
+                                    R$ {data.valor.toFixed(2)}
                                 </Text>
                             </View>
                             <View style={styles.resposta}>
@@ -76,7 +62,7 @@ export default function Fornecedor({ route }) {
                                     Resposta
                                 </Text>
                                 <Text style={styles.textItem}>
-                                    {dados.data}
+                                    {format(new Date(data.dataResposta), 'dd/MM/yyyy')}
                                 </Text>
                             </View>
                         </View>
@@ -90,7 +76,7 @@ export default function Fornecedor({ route }) {
                                 placeholder={"À vista"}
                                 placeholderTextColor={theme.colors.placeHolder}
                                 nome="formaPagamento"
-                                value={dados.forma_pagamento}
+                                value={data.formaPagamento}
                                 textContentType="name"
                                 autoCapitalize="words"
                                 autoCompleteType="name"
@@ -109,7 +95,7 @@ export default function Fornecedor({ route }) {
                                 name="telefone"
                                 placeholder="(99) 99999-9999"
                                 placeholderTextColor={theme.colors.placeHolder}
-                                value={dados.telefone}
+                                value={data.telefoneFornecedor}
                                 textContentType="telephoneNumber"
                                 keyboardType="phone-pad"
                                 autoCompleteType="tel"
@@ -129,7 +115,7 @@ export default function Fornecedor({ route }) {
                                 placeholder={"Endereço fornecedor"}
                                 placeholderTextColor={theme.colors.placeHolder}
                                 nome="endereco"
-                                value={dados.endereco}
+                                value={data.enderecoFornecedor}
                                 autoCapitalize="words"
                                 onChangeText={() => { }}
                                 style={styles.inputEndereco}
