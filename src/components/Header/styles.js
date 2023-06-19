@@ -20,14 +20,14 @@ export const styles = StyleSheet.create({
         color: "#FFFFFF",
     },
     icon: {
-        width: 40,
+        width: 45,
         height: 45,
         marginTop: 21,
         alignItems: 'center',
         justifyContent: 'center'
     },
     image: {
-        width: 40,
+        width: 45,
         height: 45,
         marginTop: 21
     }

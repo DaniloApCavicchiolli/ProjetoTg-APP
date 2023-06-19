@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as Yup from "yup";
 import Toast from "react-native-toast-message";
 
-import seuLogo from "../../../assets/seuLogo.png";
+import seuLogo from "../../../assets/icon.png";
 import { styles } from "./styles";
 import { theme } from "../../global/themes";
 import { useAuth } from "../../hooks/useAuth";
@@ -77,7 +77,7 @@ export default function Login({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={seuLogo} style={{ width: 190, height: 67 }} />
+        <Image source={seuLogo} style={{ width: 300, height: 300 }} />
       </View>
       <KeyboardAwareScrollView style={{ flex: 1, width: '100%' }}>
         <View style={styles.inputContainer}>

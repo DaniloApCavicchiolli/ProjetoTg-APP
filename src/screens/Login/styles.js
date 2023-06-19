@@ -4,7 +4,7 @@ import { theme } from '../../global/themes'
 export const styles = StyleSheet.create({
     imageContainer: {
         width: "100%",
-        height: '20%',
+        height: '35%',
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 50,

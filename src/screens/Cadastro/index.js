@@ -9,7 +9,7 @@ import * as Yup from "yup";
 
 import { api } from "../../services/api";
 
-import seuLogo from "../../../assets/seuLogo.png";
+import seuLogo from "../../../assets/icon.png";
 import { theme } from "../../global/themes";
 import { styles } from "./styles";
 
@@ -87,7 +87,7 @@ export default function Cadastro({ navigation }) {
           <AntDesign name="arrowleft" size={24} color="black" style={{ marginLeft: 20 }} />
         </TouchableOpacity>
         <Text style={styles.textHeader}> Cadastro </Text>
-        <Image source={seuLogo} style={{ width: 40, height: 45, marginRight: 20 }} />
+        <Image source={seuLogo} style={{ width: 45, height: 45, marginRight: 20 }} />
       </View>
 
       <View style={styles.container}>

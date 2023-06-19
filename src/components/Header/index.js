@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
 import { styles } from "./styles";
-import logoImage from "../../../assets/seuLogo.png";
+import logoImage from "../../../assets/icon4.png";
 
 export default Header = ({ title, icon, onPress }) => {
 
